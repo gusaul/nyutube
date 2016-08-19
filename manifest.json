@@ -1,0 +1,21 @@
+{
+	"name": "Nyutub Kane",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"minimum_chrome_version": "23",
+	"description": "A youtube client for enjoy at workspace.",
+	"icons": {
+		"16": "assets/icon.png",
+		"128": "assets/icon.png"
+	},
+	"app": {
+		"background": {
+			"scripts": ["main.js"]
+		}
+	},
+	"offline_enabled": false,
+	"permissions": [
+		"webview",
+		"alwaysOnTopWindows"
+	]
+}
