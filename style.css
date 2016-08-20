@@ -40,6 +40,9 @@ body {
 .search {
     background: url('img/search.png') center no-repeat;
 }
+.minimize {
+    background: url('img/minimize.png') center no-repeat;
+}
 .top {
     background-image: url('img/top.png');
     background-position: center;
@@ -49,7 +52,7 @@ body {
     background-color: red;
 }
 
-.close, .view, .search, .top{
+.close, .view, .search, .top, .minimize{
     -webkit-app-region: no-drag;
     background-size: 20px 20px;
     height: 20px;
@@ -60,7 +63,7 @@ body {
     z-index: 50;
 }
 
-.close:hover, .view:hover, .search:hover, .top:hover {
+.close:hover, .view:hover, .search:hover, .top:hover, .minimize:hover {
     cursor: pointer;
     opacity: 1;
 }

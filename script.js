@@ -46,6 +46,9 @@ $(document).ready(function() {
             $('.top').removeClass('navactive');
         }
     });
+    $('.minimize').click(function() {
+        chrome.app.window.current().minimize();
+    });
     $('.view').click(function() {
         if(stateWatch) {
             chrome.app.window.current().innerBounds.width = 1000;
