@@ -5,6 +5,9 @@ $(document).ready(function() {
     var webview = document.getElementById('main-view');
 
     $('.close').click(function() {
+        if(stateWatch) {
+            $('.view').click();
+        }
         window.close();
     });
 
