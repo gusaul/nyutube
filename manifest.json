@@ -16,6 +16,8 @@
 	"offline_enabled": false,
 	"permissions": [
 		"webview",
-		"alwaysOnTopWindows"
+		"alwaysOnTopWindows",
+		"fullscreen",
+		"overrideEscFullscreen"
 	]
 }

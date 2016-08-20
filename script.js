@@ -20,9 +20,14 @@ $(document).ready(function() {
         var header = document.getElementById("masthead-positioner");
         header.className = header.className.replace(" none", "");
         var headerOfst = document.getElementById("masthead-positioner-height-offset");
-        headerOfst.className += headerOfst.className.replace(" none", "");
+        headerOfst.className = headerOfst.className.replace(" none", "");
         var player = document.getElementById("player");
-        player.className += player.className.replace(" forceTop", "");
+        player.className = player.className.replace(" forceTop", "");
+    `;
+    var watchPlayerManipulate = `
+        var player = document.getElementById("player");
+        player.className += " forceTop";
+        window.scrollTo(0, 0);
     `;
     $('.search').click(function() {
         if(searchBar) {
@@ -33,20 +38,29 @@ $(document).ready(function() {
         searchBar = !searchBar;
     });
     $('.top').click(function() {
-        chrome.app.window.current().setAlwaysOnTop(onTop);
         onTop = !onTop;
+        chrome.app.window.current().setAlwaysOnTop(onTop);
+        if(onTop) {
+            $('.top').addClass('navactive');
+        } else {
+            $('.top').removeClass('navactive');
+        }
     });
     $('.view').click(function() {
         if(stateWatch) {
             chrome.app.window.current().innerBounds.width = 1000;
             chrome.app.window.current().innerBounds.height = 600;
+            chrome.app.window.current().innerBounds.top = 100;
+            chrome.app.window.current().innerBounds.left = 100;
             if(!searchBar) {
                 webview.executeScript({code: normalManipulate});
                 searchBar = true;
             }
         } else {
             chrome.app.window.current().innerBounds.width = 426;
-            chrome.app.window.current().innerBounds.height = 247;
+            chrome.app.window.current().innerBounds.height = 240;
+            chrome.app.window.current().innerBounds.top = screen.height-240;
+            chrome.app.window.current().innerBounds.left = screen.width-426;
             if(searchBar) {
                 webview.executeScript({code: watchManipulate});
                 searchBar = false;
@@ -59,11 +73,20 @@ $(document).ready(function() {
         body::-webkit-scrollbar {
             display: none;
         }
+        body {
+            overflow-x: hidden;
+        }
         .none {
             display: none!important;
         }
         .forceTop {
             top:0!important;
+        }
+        .player-api {
+            background:none!important;
+        }
+        #a11y-announcements-container {
+            display:none;
         }
     `;
 
@@ -76,8 +99,16 @@ $(document).ready(function() {
             }, function(){
                 $('.navigation').addClass('none');
             });
+
+            if(stateWatch) {
+                webview.executeScript({code: watchPlayerManipulate});
+            }
             injected = true;
         }
+    });
+
+    webview.addEventListener("loadstart", function(event) {
+        injected = false;
     });
 });
 
