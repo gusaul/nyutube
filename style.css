@@ -18,12 +18,45 @@ body {
 
 .navigation {
     height: 30px;
-    width: 150px;
+    width: 155px;
     -webkit-app-region: drag;
     position: absolute;
     right: 0;
     background-color: rgba(0,0,0,0.5);
-    cursor: move;
+}
+.gonav {
+    height: 30px;
+    width: 90px;
+    -webkit-app-region: drag;
+    position: absolute;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.gonav input {
+    width: 105px;
+    background-color: #d0cece;
+    border: none;
+    padding: 3px;
+    color: #cc181e;
+}
+
+.address {
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px 3px;
+    margin-top :30px;
+    width: 163px;
+}
+
+.address span{
+    background: #cc181e;
+    padding: 2px 5px;
+    color: white;
+    opacity: 0.8;
+}
+.address span:hover{
+    cursor: pointer;
+    opacity: 1;
 }
 
 .none {
@@ -43,6 +76,15 @@ body {
 .minimize {
     background: url('img/minimize.png') center no-repeat;
 }
+.back {
+    background: url('img/back.png') center no-repeat;
+}
+.forward {
+    background: url('img/forward.png') center no-repeat;
+}
+.youtube {
+    background: url('img/youtube.png') center no-repeat;
+}
 .top {
     background-image: url('img/top.png');
     background-position: center;
@@ -52,7 +94,8 @@ body {
     background-color: red;
 }
 
-.close, .view, .search, .top, .minimize{
+.close, .view, .search, .top, .minimize,
+.back, .forward, .youtube {
     -webkit-app-region: no-drag;
     background-size: 20px 20px;
     height: 20px;
@@ -63,7 +106,12 @@ body {
     z-index: 50;
 }
 
-.close:hover, .view:hover, .search:hover, .top:hover, .minimize:hover {
-    cursor: pointer;
+.back, .forward, .youtube {
+    float: left;
+}
+
+.close:hover, .view:hover, .search:hover, .top:hover,
+.minimize:hover, .back:hover, .forward:hover, .youtube:hover {
     opacity: 1;
+    cursor: pointer;
 }

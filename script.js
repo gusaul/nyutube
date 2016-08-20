@@ -13,6 +13,15 @@ $(document).ready(function() {
         window.close();
     });
 
+    $('html').hover(function(){
+        $('.navigation, .gonav').removeClass('none');
+    }, function(){
+        $('.navigation, .gonav').addClass('none');
+        if(!$('.address').hasClass('none')) {
+            $('.address').addClass('none');
+        }
+    });
+
     var watchManipulate = `
         var header = document.getElementById("masthead-positioner");
         header.className += " none";
@@ -77,6 +86,27 @@ $(document).ready(function() {
         stateWatch = !stateWatch;
     });
 
+    $('.back').click(function() {
+        webview.back();
+    });
+    $('.forward').click(function() {
+        webview.forward();
+    });
+    $('.youtube').click(function() {
+        if($('.address').hasClass('none')) {
+            $('.address').removeClass('none');
+        } else {
+            $('.address').addClass('none');
+        }
+    });
+    $('#gonow').click(function() {
+        var url = $('#goto').val();
+        if(url.includes("youtube.com")) {
+            $('#goto').val('');
+            document.querySelector('webview').src = url;
+        }
+    });
+
     var manipulateCss = `
         body::-webkit-scrollbar {
             display: none;
@@ -101,12 +131,6 @@ $(document).ready(function() {
     webview.addEventListener("loadstop", function(event) {
         if(!injected){
             webview.insertCSS({code: manipulateCss});
-
-            $('html').hover(function(){
-                $('.navigation').removeClass('none');
-            }, function(){
-                $('.navigation').addClass('none');
-            });
 
             if(stateWatch) {
                 webview.executeScript({code: watchPlayerManipulate});

@@ -4,9 +4,17 @@
  * found in the LICENSE file.
  **/
 
- chrome.app.runtime.onLaunched.addListener(function() {
+chrome.app.runtime.onLaunched.addListener(function() {
+  runApp();
+});
+
+chrome.app.runtime.onRestarted.addListener(function() {
+  runApp();
+});
+
+function runApp() {
   chrome.app.window.create('index.html', {
-  	id: "nyutubID",
+    id: "nyutubID",
     innerBounds: {
       height: 600,
       width: 1000,
@@ -16,4 +24,4 @@
     alwaysOnTop: false,
     frame: 'none'
   });
-});
+}
