@@ -1,13 +1,15 @@
 var injected = false, onTop = false;
 var stateWatch = false, searchBar = true;
 
+chrome.app.window.current().innerBounds.width = 1000;
+chrome.app.window.current().innerBounds.height = 600;
+chrome.app.window.current().innerBounds.top = 100;
+chrome.app.window.current().innerBounds.left = 100;
+
 $(document).ready(function() {
     var webview = document.getElementById('main-view');
 
     $('.close').click(function() {
-        if(stateWatch) {
-            $('.view').click();
-        }
         window.close();
     });
 
