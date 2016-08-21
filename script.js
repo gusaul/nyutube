@@ -106,6 +106,12 @@ $(document).ready(function() {
             document.querySelector('webview').src = url;
         }
     });
+    document.querySelector('#goto').addEventListener('keypress', function (e) {
+        var key = e.which || e.keyCode;
+        if (key === 13) {
+            $('#gonow').click();
+        }
+    });
 
     var manipulateCss = `
         body::-webkit-scrollbar {
