@@ -101,15 +101,37 @@ $(document).ready(function() {
     });
     $('#gonow').click(function() {
         var url = $('#goto').val();
-        if(url.includes("youtube.com")) {
+        if(url.includes("http://youtube.com") || url.includes("https://youtube.com") ||
+            url.includes("http://www.youtube.com") || url.includes("https://www.youtube.com")) {
             $('#goto').val('');
             document.querySelector('webview').src = url;
         }
+    });
+    $('.copy').click(function(){
+        var url = document.querySelector('webview').src;
+        $('#copyarea').val(url);
+        $('#copyarea').select();
+        document.execCommand('copy');
     });
     document.querySelector('#goto').addEventListener('keypress', function (e) {
         var key = e.which || e.keyCode;
         if (key === 13) {
             $('#gonow').click();
+        }
+    });
+
+    $("html").keydown(function(e) {
+        var key = e.which || e.keyCode;
+        if(key === 27) {
+            chrome.app.window.current().innerBounds.top = screen.height;
+            chrome.app.window.current().innerBounds.left = screen.width;
+        }
+    });
+    $("html").keyup(function(e) {
+        var key = e.which || e.keyCode;
+        if(key === 27) {
+            chrome.app.window.current().innerBounds.top = (stateWatch) ? screen.height-240 : 100;
+            chrome.app.window.current().innerBounds.left =  (stateWatch) ? screen.width-426 : 100;
         }
     });
 

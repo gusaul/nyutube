@@ -16,9 +16,15 @@ body {
     text-align: left;
 }
 
+#copyarea {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+}
+
 .navigation {
     height: 30px;
-    width: 155px;
+    width: 180px;
     -webkit-app-region: drag;
     position: absolute;
     right: 0;
@@ -76,6 +82,9 @@ body {
 .minimize {
     background: url('img/minimize.png') center no-repeat;
 }
+.copy {
+    background: url('img/link.png') center no-repeat;
+}
 .back {
     background: url('img/back.png') center no-repeat;
 }
@@ -95,7 +104,7 @@ body {
 }
 
 .close, .view, .search, .top, .minimize,
-.back, .forward, .youtube {
+.back, .forward, .youtube, .copy {
     -webkit-app-region: no-drag;
     background-size: 20px 20px;
     height: 20px;
@@ -110,7 +119,7 @@ body {
     float: left;
 }
 
-.close:hover, .view:hover, .search:hover, .top:hover,
+.close:hover, .view:hover, .search:hover, .top:hover, .copy:hover,
 .minimize:hover, .back:hover, .forward:hover, .youtube:hover {
     opacity: 1;
     cursor: pointer;
