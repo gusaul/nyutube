@@ -23,26 +23,22 @@ $(document).ready(function() {
     });
 
     var watchManipulate = `
-        var header = document.getElementById("masthead-positioner");
+        var header = document.getElementById("masthead-container");
         header.className += " none";
-        var headerOfst = document.getElementById("masthead-positioner-height-offset");
-        headerOfst.className += " none";
-        var player = document.getElementById("player");
-        player.className += " forceTop";
+        var mainContent = document.getElementById("page-manager");
+        mainContent.className += " forceTop";
+        var primary = document.querySelectorAll("#primary")[1];
+        primary.className += " fit";
     `;
     var normalManipulate = `
-        var header = document.getElementById("masthead-positioner");
+        var header = document.getElementById("masthead-container");
         header.className = header.className.replace(" none", "");
-        var headerOfst = document.getElementById("masthead-positioner-height-offset");
-        headerOfst.className = headerOfst.className.replace(" none", "");
-        var player = document.getElementById("player");
-        player.className = player.className.replace(" forceTop", "");
+        var mainContent = document.getElementById("page-manager");
+        mainContent.className = mainContent.className.replace(" forceTop", "");
+        var primary = document.querySelectorAll("#primary")[1];
+        primary.className = primary.className.replace(" fit", "");;
     `;
-    var watchPlayerManipulate = `
-        var player = document.getElementById("player");
-        player.className += " forceTop";
-        window.scrollTo(0, 0);
-    `;
+
     $('.search').click(function() {
         if(searchBar) {
             webview.executeScript({code: watchManipulate});
@@ -146,13 +142,11 @@ $(document).ready(function() {
             display: none!important;
         }
         .forceTop {
-            top:0!important;
+            margin-top:0!important;
         }
-        .player-api {
-            background:none!important;
-        }
-        #a11y-announcements-container {
-            display:none;
+        .fit {
+            padding: 0!important;
+            margin: 0!important;
         }
     `;
 
@@ -161,7 +155,7 @@ $(document).ready(function() {
             webview.insertCSS({code: manipulateCss});
 
             if(stateWatch) {
-                webview.executeScript({code: watchPlayerManipulate});
+                // webview.executeScript({code: });
             }
             injected = true;
         }
