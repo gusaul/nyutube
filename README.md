@@ -1,5 +1,5 @@
 # nyutube
-a youtube client for enjoy at workspace (chrome apps)
+a youtube client for enjoyed at workspace (chrome apps)
 
 ## Installation
 <a href="https://www.cnet.com/how-to/how-to-install-chrome-extensions-manually/" target="_blank">IQRA'</a>
